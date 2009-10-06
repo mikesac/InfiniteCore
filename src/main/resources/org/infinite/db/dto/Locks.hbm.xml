@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8-lug-2009 10.08.08 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="org.infinite.db.dto.Locks" table="locks" catalog="mikesac_mikesac">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="locks" class="org.infinite.db.dto.Locks" fetch="select">
+            <column name="parentId" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" not-null="true" />
+        </property>
+        <set name="lockses" inverse="true">
+            <key>
+                <column name="parentId" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.Locks" />
+        </set>
+    </class>
+</hibernate-mapping>

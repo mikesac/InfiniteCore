@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8-lug-2009 10.08.08 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="org.infinite.db.dto.Item" table="Item" catalog="mikesac_mikesac">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" not-null="true">
+                <comment>item name</comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="description" not-null="true">
+                <comment>item description</comment>
+            </column>
+        </property>
+        <property name="image" type="string">
+            <column name="image" not-null="true">
+                <comment>item image</comment>
+            </column>
+        </property>
+        <property name="costAp" type="java.lang.Integer">
+            <column name="costAP" not-null="true" />
+        </property>
+        <property name="reqStr" type="java.lang.Integer">
+            <column name="req_str" not-null="true">
+                <comment>required str</comment>
+            </column>
+        </property>
+        <property name="reqInt" type="java.lang.Integer">
+            <column name="req_int" not-null="true" />
+        </property>
+        <property name="reqDex" type="java.lang.Integer">
+            <column name="req_dex" not-null="true" />
+        </property>
+        <property name="reqCha" type="java.lang.Integer">
+            <column name="req_cha" not-null="true" />
+        </property>
+        <property name="reqLev" type="java.lang.Integer">
+            <column name="req_lev" not-null="true" />
+        </property>
+        <property name="modStr" type="java.lang.Integer">
+            <column name="mod_str" not-null="true" />
+        </property>
+        <property name="modInt" type="java.lang.Integer">
+            <column name="mod_int" not-null="true" />
+        </property>
+        <property name="modDex" type="java.lang.Integer">
+            <column name="mod_dex" not-null="true" />
+        </property>
+        <property name="modCha" type="java.lang.Integer">
+            <column name="mod_cha" not-null="true" />
+        </property>
+        <property name="price" type="float">
+            <column name="price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="level" type="java.lang.Integer">
+            <column name="level" not-null="true">
+                <comment>item level</comment>
+            </column>
+        </property>
+        <property name="spell" type="java.lang.Integer">
+            <column name="spell" not-null="true" />
+        </property>
+        <property name="damage" type="string">
+            <column name="damage" length="128" not-null="true" />
+        </property>
+        <property name="initiative" type="java.lang.Integer">
+            <column name="initiative" not-null="true" />
+        </property>
+        <property name="durability" type="java.lang.Integer">
+            <column name="durability" not-null="true" />
+        </property>
+        <property name="type" type="java.lang.Integer">
+            <column name="type" not-null="true" />
+        </property>
+        <set name="playerOwnItems" inverse="true">
+            <key>
+                <column name="Itemid" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.PlayerOwnItem" />
+        </set>
+        <set name="questsForGoalItem" inverse="true">
+            <key>
+                <column name="goalItem" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.Quest" />
+        </set>
+        <set name="questsForGrantItem" inverse="true">
+            <key>
+                <column name="grantItem" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.Quest" />
+        </set>
+    </class>
+</hibernate-mapping>

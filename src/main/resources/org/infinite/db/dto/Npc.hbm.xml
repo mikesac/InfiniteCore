@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8-lug-2009 10.08.08 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="org.infinite.db.dto.Npc" table="NPC" catalog="mikesac_mikesac">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" not-null="true">
+                <comment>NPC name</comment>
+            </column>
+        </property>
+        <property name="image" type="string">
+            <column name="image" not-null="true">
+                <comment>NPC pic</comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" not-null="true" />
+        </property>
+        <property name="baseStr" type="java.lang.Integer">
+            <column name="base_str" not-null="true">
+                <comment>strength</comment>
+            </column>
+        </property>
+        <property name="baseInt" type="java.lang.Integer">
+            <column name="base_int" not-null="true">
+                <comment>intelligence</comment>
+            </column>
+        </property>
+        <property name="baseDex" type="java.lang.Integer">
+            <column name="base_dex" not-null="true">
+                <comment>agility</comment>
+            </column>
+        </property>
+        <property name="baseCha" type="java.lang.Integer">
+            <column name="base_cha" not-null="true">
+                <comment>charisma</comment>
+            </column>
+        </property>
+        <property name="basePl" type="java.lang.Integer">
+            <column name="base_pl" not-null="true">
+                <comment>life points</comment>
+            </column>
+        </property>
+        <property name="basePm" type="java.lang.Integer">
+            <column name="base_pm" not-null="true">
+                <comment>magic points</comment>
+            </column>
+        </property>
+        <property name="basePa" type="java.lang.Integer">
+            <column name="base_pa" not-null="true">
+                <comment>action points</comment>
+            </column>
+        </property>
+        <property name="basePc" type="java.lang.Integer">
+            <column name="base_pc" not-null="true">
+                <comment>charm points</comment>
+            </column>
+        </property>
+        <property name="level" type="java.lang.Integer">
+            <column name="level" not-null="true">
+                <comment>NPC level</comment>
+            </column>
+        </property>
+        <property name="px" type="java.lang.Integer">
+            <column name="px" not-null="true">
+                <comment>Experience points</comment>
+            </column>
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" not-null="true">
+                <comment>status</comment>
+            </column>
+        </property>
+        <property name="gold" type="float">
+            <column name="gold" precision="12" scale="0" not-null="true">
+                <comment>money</comment>
+            </column>
+        </property>
+        <property name="nitem" type="short">
+            <column name="nitem" not-null="true" />
+        </property>
+        <property name="useWpn" type="boolean">
+            <column name="useWpn" not-null="true" />
+        </property>
+        <property name="useShld" type="boolean">
+            <column name="useShld" not-null="true" />
+        </property>
+        <property name="useArm" type="boolean">
+            <column name="useArm" not-null="true" />
+        </property>
+        <property name="dialog" type="string">
+            <column name="dialog" not-null="true">
+                <comment>xml for dialogs</comment>
+            </column>
+        </property>
+        <property name="ismonster" type="boolean">
+            <column name="ismonster" not-null="true">
+                <comment>Npc (0) or Monster (1)</comment>
+            </column>
+        </property>
+        <property name="areatype" type="java.lang.Integer">
+            <column name="areatype" not-null="true" />
+        </property>
+        <property name="nattack" type="java.lang.Integer">
+            <column name="nattack" not-null="true" />
+        </property>
+        <property name="attack" type="string">
+            <column name="attack" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

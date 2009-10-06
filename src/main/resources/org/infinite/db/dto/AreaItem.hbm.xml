@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8-lug-2009 10.08.08 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="org.infinite.db.dto.AreaItem" table="AreaItem" catalog="mikesac_mikesac">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="64" not-null="true">
+                <comment>Area item name</comment>
+            </column>
+        </property>
+        <property name="icon" type="string">
+            <column name="icon" length="64" not-null="true" />
+        </property>
+        <property name="cost" type="java.lang.Integer">
+            <column name="cost" not-null="true" />
+        </property>
+        <property name="areaid" type="java.lang.Integer">
+            <column name="areaid" not-null="true">
+                <comment>parent area</comment>
+            </column>
+        </property>
+        <property name="areax" type="short">
+            <column name="areax" not-null="true">
+                <comment>parent area x</comment>
+            </column>
+        </property>
+        <property name="areay" type="short">
+            <column name="areay" not-null="true">
+                <comment>parent area y</comment>
+            </column>
+        </property>
+        <property name="x" type="java.lang.Integer">
+            <column name="x" not-null="true">
+                <comment>x coord</comment>
+            </column>
+        </property>
+        <property name="y" type="java.lang.Integer">
+            <column name="y" not-null="true">
+                <comment>ycoord</comment>
+            </column>
+        </property>
+        <property name="arealock" type="string">
+            <column name="arealock" length="64" not-null="true">
+                <comment>lock id</comment>
+            </column>
+        </property>
+        <property name="areatype" type="java.lang.Integer">
+            <column name="areatype" not-null="true" />
+        </property>
+        <property name="questlock" type="string">
+            <column name="questlock" length="64" not-null="true" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" not-null="true" />
+        </property>
+        <property name="doublestep" type="boolean">
+            <column name="doublestep" not-null="true" />
+        </property>
+        <property name="hidemode" type="boolean">
+            <column name="hidemode" not-null="true" />
+        </property>
+        <property name="level" type="java.lang.Integer">
+            <column name="level" not-null="true" />
+        </property>
+        <property name="npcs" type="string">
+            <column name="npcs" length="64" not-null="true" />
+        </property>
+        <set name="players" inverse="true">
+            <key>
+                <column name="areaItem" not-null="true">
+                    <comment>player location</comment>
+                </column>
+            </key>
+            <one-to-many class="org.infinite.db.dto.Player" />
+        </set>
+    </class>
+</hibernate-mapping>

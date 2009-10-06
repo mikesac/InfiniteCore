@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8-lug-2009 10.08.08 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="org.infinite.db.dto.Player" table="Player" catalog="mikesac_mikesac">
+        <meta attribute="not-null" inherit="false">false</meta>
+        <id name="id" type="int">
+            <meta attribute="not-null" inherit="false">true</meta>
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tomcatUsers" class="org.infinite.db.dto.TomcatUsers" fetch="select">
+            <column name="aid" length="16" not-null="true" />
+        </many-to-one>
+        <many-to-one name="areaItem" class="org.infinite.db.dto.AreaItem" fetch="select">
+            <column name="areaItem" not-null="true">
+                <comment>player location</comment>
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" not-null="true">
+                <comment>Character name</comment>
+            </column>
+        </property>
+        <property name="image" type="string">
+            <column name="image" not-null="true">
+                <comment>Avatar image for the PG</comment>
+            </column>
+        </property>
+        <property name="baseStr" type="java.lang.Integer">
+            <column name="base_str" not-null="true">
+                <comment>strength</comment>
+            </column>
+        </property>
+        <property name="baseInt" type="java.lang.Integer">
+            <column name="base_int" not-null="true">
+                <comment>intelligence</comment>
+            </column>
+        </property>
+        <property name="baseDex" type="java.lang.Integer">
+            <column name="base_dex" not-null="true">
+                <comment>agility</comment>
+            </column>
+        </property>
+        <property name="baseCha" type="java.lang.Integer">
+            <column name="base_cha" not-null="true">
+                <comment>charisma</comment>
+            </column>
+        </property>
+        <property name="basePl" type="java.lang.Integer">
+            <column name="base_pl" not-null="true">
+                <comment>life points</comment>
+            </column>
+        </property>
+        <property name="basePm" type="java.lang.Integer">
+            <column name="base_pm" not-null="true">
+                <comment>magic points</comment>
+            </column>
+        </property>
+        <property name="basePa" type="java.lang.Integer">
+            <column name="base_pa" not-null="true">
+                <comment>action points</comment>
+            </column>
+        </property>
+        <property name="basePc" type="java.lang.Integer">
+            <column name="base_pc" not-null="true">
+                <comment>charm points</comment>
+            </column>
+        </property>
+        <property name="pl" type="java.lang.Integer">
+            <column name="pl" not-null="true" />
+        </property>
+        <property name="pm" type="java.lang.Integer">
+            <column name="pm" not-null="true" />
+        </property>
+        <property name="pa" type="java.lang.Integer">
+            <column name="pa" not-null="true" />
+        </property>
+        <property name="pc" type="java.lang.Integer">
+            <column name="pc" not-null="true" />
+        </property>
+        <property name="statsMod" type="long">
+            <column name="stats_mod" not-null="true" />
+        </property>
+        <property name="level" type="java.lang.Integer">
+            <column name="level" not-null="true">
+                <comment>Player level</comment>
+            </column>
+        </property>
+        <property name="px" type="java.lang.Integer">
+            <column name="px" not-null="true">
+                <comment>experience points</comment>
+            </column>
+        </property>
+        <property name="assign" type="short">
+            <column name="assign" not-null="true" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" not-null="true">
+                <comment>status</comment>
+            </column>
+        </property>
+        <property name="gold" type="float">
+            <column name="gold" precision="12" scale="0" not-null="true">
+                <comment>money</comment>
+            </column>
+        </property>
+        <property name="nattack" type="java.lang.Integer">
+            <column name="nattack" not-null="true" />
+        </property>
+        <property name="attack" type="string">
+            <column name="attack" not-null="true" />
+        </property>
+        <property name="battle" type="string">
+            <column name="battle" length="512" not-null="true" />
+        </property>
+        <set name="playerOwnQuests" inverse="true">
+            <key>
+                <column name="playerID" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.PlayerOwnQuest" />
+        </set>
+        <set name="playerOwnItems" inverse="true">
+            <key>
+                <column name="Playerid" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.PlayerOwnItem" />
+        </set>
+        <set name="spellAffectPlayers" inverse="true">
+            <key>
+                <column name="Playerid" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.SpellAffectPlayer" />
+        </set>
+        <set name="playerKnowSpells" inverse="true">
+            <key>
+                <column name="Playerid" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.PlayerKnowSpell" />
+        </set>
+    </class>
+</hibernate-mapping>

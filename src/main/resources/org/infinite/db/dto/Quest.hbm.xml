@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8-lug-2009 10.08.08 by Hibernate Tools 3.2.4.CR1 -->
+<hibernate-mapping>
+    <class name="org.infinite.db.dto.Quest" table="Quest" catalog="mikesac_mikesac">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itemByGoalItem" class="org.infinite.db.dto.Item" fetch="select">
+            <column name="goalItem" not-null="true" />
+        </many-to-one>
+        <many-to-one name="itemByGrantItem" class="org.infinite.db.dto.Item" fetch="select">
+            <column name="grantItem" not-null="true" />
+        </many-to-one>
+        <many-to-one name="quest" class="org.infinite.db.dto.Quest" fetch="select">
+            <column name="reqQuest" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="128" not-null="true" unique="true" />
+        </property>
+        <property name="descrPending" type="string">
+            <column name="descrPending" length="65535" not-null="true" />
+        </property>
+        <property name="descrExecuted" type="string">
+            <column name="descrExecuted" length="65535" not-null="true" />
+        </property>
+        <property name="reqLev" type="java.lang.Integer">
+            <column name="reqLev" not-null="true" />
+        </property>
+        <property name="goalItemN" type="java.lang.Integer">
+            <column name="goalItemN" not-null="true" />
+        </property>
+        <property name="repeat" type="boolean">
+            <column name="repeat" not-null="true" />
+        </property>
+        <property name="grantGold" type="float">
+            <column name="grantGold" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="grantXp" type="java.lang.Integer">
+            <column name="grantXp" not-null="true" />
+        </property>
+        <set name="playerOwnQuests" inverse="true">
+            <key>
+                <column name="questID" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.PlayerOwnQuest" />
+        </set>
+        <set name="quests" inverse="true">
+            <key>
+                <column name="reqQuest" not-null="true" />
+            </key>
+            <one-to-many class="org.infinite.db.dto.Quest" />
+        </set>
+    </class>
+</hibernate-mapping>

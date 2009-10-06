@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans-2.0.dtd'>
+<beans>
+
+	<import resource="classpath:infiniteDatasource.xml"/>
+	
+	
+	<!-- Engines -->
+	
+	<bean id="MapEngine" class="org.infinite.engines.map.MapEngine">
+		<property name="daoManager">
+			<ref bean="DaoManager" />
+		</property>
+	</bean>
+	
+	<bean id="ItemsEngine" class="org.infinite.engines.items.ItemsEngine">
+		<property name="daoManager">
+			<ref bean="DaoManager" />
+		</property>
+	</bean>
+	
+	<bean id="MagicEngine" class="org.infinite.engines.magic.MagicEngine">
+		<property name="daoManager">
+			<ref bean="DaoManager" />
+		</property>
+	</bean>
+	
+	<bean id="FightEngine" class="org.infinite.engines.fight.FightEngine">
+		<property name="daoManager">
+			<ref bean="DaoManager" />
+		</property>
+		<property name="magicEngine">
+			<ref bean="MagicEngine" />
+		</property>
+		<property name="itemsEngine">
+			<ref bean="ItemsEngine" />
+		</property>
+	</bean>
+	
+	<bean id="AiEngine" class="org.infinite.engines.AI.AiEngine">
+		<property name="daoManager">
+			<ref bean="DaoManager" />
+		</property>
+		<property name="itemsEngine">
+			<ref bean="ItemsEngine" />
+		</property>
+	</bean>
+
+
+	<!-- Dao Management + DB configuration -->
+
+
+	<bean id="DaoManager" class="org.infinite.db.dao.BaseDaoManager">
+		<property name="manager">
+			<ref bean="DbManager" />
+		</property>
+	</bean>
+
+	<bean id="DbManager" class="org.infinite.db.HibernateDbManager">
+		<property name="hibernateTemplate">
+			<ref bean="HibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="HibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="infiniteSessionFactory" />
+		</property>
+	</bean>
+
+
+	<bean id="infiniteSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="infiniteDataSource" />
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+			</props>
+		</property>
+		<property name="mappingLocations" value="classpath:org/infinite/db/dto/*.hbm.xml" />
+	</bean>
+
+<!-- 
+	<bean id="infinitePropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:config/jdbc.properties</value>
+				<value>classpath:config/hibernate.properties</value>
+			</list>
+		</property>
+	</bean>
+ -->
+</beans>
