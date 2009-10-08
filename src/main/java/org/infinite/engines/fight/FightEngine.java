@@ -450,7 +450,7 @@ public class FightEngine {
 
 	
 	
-	public int getAvailableAttackSlot(PlayerInterface p) {
+	public static int getAvailableAttackSlot(PlayerInterface p) {
 		return p.getLevel() / InfiniteCst.CFG_LV_TO_BATTLE_PLAN_SLOTS +1;
 	}
 

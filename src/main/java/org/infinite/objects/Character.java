@@ -479,8 +479,8 @@ public class Character implements PlayerInterface, ItemsInterface {
 		return MagicEngine.getAvailableSpellSlots(this);
 	}
 
-	public int getAvailableAttackSlot(FightEngine fightEngine){
-		return fightEngine.getAvailableAttackSlot(this) - getBattlePlan().size();
+	public int getAvailableAttackSlot(){
+		return FightEngine.getAvailableAttackSlot(this) - getBattlePlan().size();
 	}
 
 	public String getPic() {

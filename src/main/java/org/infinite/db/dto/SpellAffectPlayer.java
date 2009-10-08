@@ -7,6 +7,8 @@ package org.infinite.db.dto;
  */
 public class SpellAffectPlayer implements java.io.Serializable {
 
+	private static final long serialVersionUID = -4041166198901650393L;
+	
 	private Integer id;
 	private Player player;
 	private Spell spell;

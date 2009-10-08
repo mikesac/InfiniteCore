@@ -7,6 +7,8 @@ package org.infinite.db.dto;
  */
 public class PlayerOwnQuest implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1991663352473847165L;
+	
 	private Integer id;
 	private Player player;
 	private Quest quest;

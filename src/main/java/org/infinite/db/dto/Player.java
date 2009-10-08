@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public class Player implements java.io.Serializable {
 
+	private static final long serialVersionUID = -117634281899724301L;
+	
 	private int id;
 	private TomcatUsers tomcatUsers;
 	private AreaItem areaItem;

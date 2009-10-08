@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public class TomcatUsers implements java.io.Serializable {
 
+	private static final long serialVersionUID = 7123428943648478766L;
+	
 	private String user;
 	private String password;
 	private String email;

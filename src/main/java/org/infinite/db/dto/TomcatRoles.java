@@ -7,6 +7,8 @@ package org.infinite.db.dto;
  */
 public class TomcatRoles implements java.io.Serializable {
 
+	private static final long serialVersionUID = -4169326741600827218L;
+	
 	private String user;
 	private TomcatUsers tomcatUsers;
 	private String role;

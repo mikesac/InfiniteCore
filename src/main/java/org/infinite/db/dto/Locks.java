@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public class Locks implements java.io.Serializable {
 
+	private static final long serialVersionUID = -1946519936259994392L;
+	
 	private Integer id;
 	private Locks locks;
 	private String name;

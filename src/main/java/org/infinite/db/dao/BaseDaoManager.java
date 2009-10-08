@@ -13,6 +13,7 @@ import org.infinite.db.dto.PlayerOwnItem;
 import org.infinite.db.dto.Spell;
 import org.infinite.db.dto.SpellAffectPlayer;
 import org.infinite.db.dto.TomcatUsers;
+import org.infinite.objects.Character;
 
 public class BaseDaoManager implements DaoManager{
 
@@ -161,6 +162,22 @@ public class BaseDaoManager implements DaoManager{
 
 	}
 
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Npc> getMonsterList(int monsterLevel){
+		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " level="+monsterLevel+" and  ismonster=1");
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Player> getOtherPlayerInArea(Character c){		
+		return (ArrayList<Player>)getManager().listByQuery(Player.class.getName()," level <= '"+(c.getLevel()+3)+"' and p.level>='"+(c.getLevel()-3)+"' and p.id!='"+c.getDao().getId()+"' and p.areaItem.id='"+c.getDao().getAreaItem().getId()+"'");
+	}
+
+	
+	
+	
+	
 	
 	/* ------------ USERS ------------- */
 	public TomcatUsers getTomcatUsers(String userName) {

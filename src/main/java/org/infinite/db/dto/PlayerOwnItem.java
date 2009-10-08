@@ -7,6 +7,9 @@ package org.infinite.db.dto;
  */
 public class PlayerOwnItem implements java.io.Serializable {
 
+
+	private static final long serialVersionUID = -7611161566515299901L;
+	
 	private int id;
 	private Player player;
 	private Item item;
@@ -64,4 +67,8 @@ public class PlayerOwnItem implements java.io.Serializable {
 		this.bodypart = bodypart;
 	}
 
+	//this one is used to have a common-named method between POI and PKS
+	public Item getObject(){
+		return getItem();
+	}
 }

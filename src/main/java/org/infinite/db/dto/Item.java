@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public class Item implements java.io.Serializable {
 
+	private static final long serialVersionUID = -8595538890977416123L;
+	
 	private Integer id;
 	private String name;
 	private String description;

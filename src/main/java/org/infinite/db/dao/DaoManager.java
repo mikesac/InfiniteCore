@@ -12,6 +12,7 @@ import org.infinite.db.dto.PlayerOwnItem;
 import org.infinite.db.dto.Spell;
 import org.infinite.db.dto.SpellAffectPlayer;
 import org.infinite.db.dto.TomcatUsers;
+import org.infinite.objects.Character;
 
 public interface DaoManager {
 
@@ -56,6 +57,9 @@ public interface DaoManager {
 	
 	ArrayList<Player> getCharacterListing(String account);
 	
+	ArrayList<Npc> getMonsterList(int monsterLevel);
+
+	ArrayList<Player> getOtherPlayerInArea(Character c);
 	
 	/* ------------------ POI PKS SAP------------------ */
 
@@ -82,6 +86,8 @@ public interface DaoManager {
 	boolean create(Object dto);
 	
 	boolean update(Object dto);
+
+	
 	
 	
 }

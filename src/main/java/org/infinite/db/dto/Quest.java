@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public class Quest implements java.io.Serializable {
 
+	private static final long serialVersionUID = 6993854633291815743L;
+	
 	private Integer id;
 	private Item itemByGoalItem;
 	private Item itemByGrantItem;

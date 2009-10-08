@@ -7,6 +7,8 @@ package org.infinite.db.dto;
  */
 public class Npc implements java.io.Serializable {
 
+	private static final long serialVersionUID = -6006619900013706731L;
+	
 	private Integer id;
 	private String name;
 	private String image;

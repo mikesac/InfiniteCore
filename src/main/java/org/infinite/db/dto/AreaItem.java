@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public class AreaItem implements java.io.Serializable {
 
+	private static final long serialVersionUID = -3457581710191722824L;
+	
 	private Integer id;
 	private String name;
 	private String icon;

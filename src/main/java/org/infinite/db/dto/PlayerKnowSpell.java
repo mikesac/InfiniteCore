@@ -7,6 +7,9 @@ package org.infinite.db.dto;
  */
 public class PlayerKnowSpell implements java.io.Serializable {
 
+
+	private static final long serialVersionUID = 5205600420469231730L;
+	
 	private Integer id;
 	private Player player;
 	private Spell spell;
@@ -53,4 +56,9 @@ public class PlayerKnowSpell implements java.io.Serializable {
 		this.status = status;
 	}
 
+	//this one is used to have a common-named method between POI and PKS
+	public Spell getObject(){
+		return getSpell();
+	}
+	
 }

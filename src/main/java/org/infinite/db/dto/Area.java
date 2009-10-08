@@ -7,6 +7,8 @@ package org.infinite.db.dto;
  */
 public class Area implements java.io.Serializable {
 
+	private static final long serialVersionUID = 5264256400532343452L;
+	
 	private Integer id;
 	private String name;
 	private String description;
