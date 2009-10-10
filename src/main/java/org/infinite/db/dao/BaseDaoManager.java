@@ -171,7 +171,7 @@ public class BaseDaoManager implements DaoManager{
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Player> getOtherPlayerInArea(Character c){		
-		return (ArrayList<Player>)getManager().listByQuery(Player.class.getName()," level <= '"+(c.getLevel()+3)+"' and p.level>='"+(c.getLevel()-3)+"' and p.id!='"+c.getDao().getId()+"' and p.areaItem.id='"+c.getDao().getAreaItem().getId()+"'");
+		return (ArrayList<Player>)getManager().listByQuery(Player.class.getName()," level <= '"+(c.getLevel()+3)+"' and level>='"+(c.getLevel()-3)+"' and id!='"+c.getDao().getId()+"' and areaItem.id='"+c.getDao().getAreaItem().getId()+"'");
 	}
 
 	

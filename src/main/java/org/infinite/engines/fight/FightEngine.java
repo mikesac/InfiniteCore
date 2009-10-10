@@ -240,14 +240,16 @@ public class FightEngine {
 		r.setAttackImg(szAtkData[1]);
 		r.setRoundType(InfiniteCst.ATTACK_TYPE_MAGIC);
 
-		Spell spell = ((PlayerKnowSpell)attacker.getCurrentAttack(round)).getSpell();
-		
+		Spell spell = ((PlayerKnowSpell)attacker.getCurrentAttack(round)).getSpell();		
 		
 		spell = attacker.castSpell( spell , getMagicEngine());
 		
 		if(spell==null){
 			r.setAttackType(InfiniteCst.MAGIC_UNCAST);
+			r.setHit(false);
 			return;
+		}else{
+			r.setHit(true);
 		}
 		
 		int type = spell.getSpelltype();
