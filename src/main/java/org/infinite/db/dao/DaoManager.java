@@ -11,6 +11,7 @@ import org.infinite.db.dto.PlayerKnowSpell;
 import org.infinite.db.dto.PlayerOwnItem;
 import org.infinite.db.dto.Spell;
 import org.infinite.db.dto.SpellAffectPlayer;
+import org.infinite.db.dto.TomcatRoles;
 import org.infinite.db.dto.TomcatUsers;
 import org.infinite.objects.Character;
 
@@ -35,6 +36,8 @@ public interface DaoManager {
 	/* ------------------ NPC ------------------ */
 	
 	Npc getNpcByName(String name);
+	
+	Npc getNpcById(int id);
 	
 	String[] getMonsterListing();
 	
@@ -78,6 +81,9 @@ public interface DaoManager {
 	
 	TomcatUsers getTomcatUsers(String userName);
 
+	ArrayList<TomcatUsers> findTomcatUsers(String userName, String email);
+
+	TomcatRoles getUserRole(String userName);
 	
 	/* ------------------ Generics ------------------ */
 	
@@ -86,6 +92,10 @@ public interface DaoManager {
 	boolean create(Object dto);
 	
 	boolean update(Object dto);
+
+	
+
+	
 
 	
 	

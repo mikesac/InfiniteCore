@@ -12,6 +12,7 @@ import org.infinite.db.dto.PlayerKnowSpell;
 import org.infinite.db.dto.PlayerOwnItem;
 import org.infinite.db.dto.Spell;
 import org.infinite.db.dto.SpellAffectPlayer;
+import org.infinite.db.dto.TomcatRoles;
 import org.infinite.db.dto.TomcatUsers;
 import org.infinite.objects.Character;
 
@@ -109,9 +110,12 @@ public class BaseDaoManager implements DaoManager{
 	}
 
 
-	@Override
 	public Npc getNpcByName(String name) {		
 		return (Npc)getManager().listByQuery(Npc.class.getName(), "name='"+name+"'").get(0);
+	}
+	
+	public Npc getNpcById(int id) {		
+		return (Npc)getManager().findById(Npc.class.getName(), id );
 	}
 
 
@@ -183,6 +187,16 @@ public class BaseDaoManager implements DaoManager{
 	public TomcatUsers getTomcatUsers(String userName) {
 		return (TomcatUsers) getManager().listByQuery(TomcatUsers.class.getName(), "user='"+userName+"'").get(0);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<TomcatUsers> findTomcatUsers(String userName,String email) {
+		return (ArrayList<TomcatUsers>) getManager().listByQuery(TomcatUsers.class.getName(), "user='"+userName+"' or u.email='"+email+"'");
+	}
+	
+	public TomcatRoles getUserRole(String userName){
+		return (TomcatRoles) getManager().listByQuery(TomcatRoles.class.getName(), "user='"+userName+"'").get(0);
+	}
+	
 
 	/* ------------------ Generics ------------------ */
 

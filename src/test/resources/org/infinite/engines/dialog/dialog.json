@@ -1,14 +1,15 @@
+{
 "dialog" : [
 	{
-		"id":"0",
+		"id":0,
 		"sentence":"Welcome stranger, how are you?",
-		"answer":[
+		"answers":[
 			{
 			"answer":"Fine thanks, I'd like to trade",
 			"reqLevel":0,
 			"reqQuest":0,
 			"reqQuestStatus":0,
-			"dialogId":"1",
+			"dialogId":1,
 			"redirectUrl":""
 			},
 			{
@@ -16,7 +17,7 @@
 			"reqLevel":0,
 			"reqQuest":0,
 			"reqQuestStatus":0,
-			"dialogId":"2",
+			"dialogId":2,
 			"redirectUrl":""
 			},
 			{
@@ -24,29 +25,29 @@
 			"reqLevel":0,
 			"reqQuest":0,
 			"reqQuestStatus":0,
-			"dialogId":"3",
+			"dialogId":3,
 			"redirectUrl":""
 			}
 		]
 	},
 	{
-		"id":"1",
+		"id":1,
 		"sentence":"Welcome stranger, how are you?",
-		"answer":[
+		"answers":[
 			{
 			"answer":"Fine thanks, I'd like to trade",
 			"reqLevel":0,
 			"reqQuest":0,
 			"reqQuestStatus":0,
-			"dialogId":"1",
-			"redirectUrl":""
+			"dialogId":1,
+			"redirectUrl":"TOPARSEorg.infinite.web.PagesCst.PAGE_SHOP"
 			},
 			{
 			"answer":"Nice to meet you, any rumor in this town?",
 			"reqLevel":0,
 			"reqQuest":0,
 			"reqQuestStatus":0,
-			"dialogId":"2",
+			"dialogId":2,
 			"redirectUrl":""
 			},
 			{
@@ -54,37 +55,38 @@
 			"reqLevel":0,
 			"reqQuest":0,
 			"reqQuestStatus":0,
-			"dialogId":"3",
+			"dialogId":3,
 			"redirectUrl":""
 			}
 		]
 	},
 	{
-		"id":"2",
+		"id":2,
 		"sentence":"Rumors? Nope, this is a really quiet town!",
-		"answer":[
+		"answers":[
 			{
 			"answer":"Never mind, see you",
 			"reqLevel":0,
 			"reqQuest":0,
 			"reqQuestStatus":0,
-			"dialogId":"1",
+			"dialogId":1,
 			"redirectUrl":""
 			}
 		]
 	},
 	{
-		"id":"3",
+		"id":3,
 		"sentence":"Ok, see you soon!",
-		"answer":[
+		"answers":[
 			{
 			"answer":"back to map",
 			"reqLevel":0,
 			"reqQuest":0,
 			"reqQuestStatus":0,
-			"dialogId":"1",
+			"dialogId":1,
 			"redirectUrl":"TOPARSEorg.infinite.web.PagesCst.PAGE_MAP"
 			}
 		]
 	}	
 ]
+}

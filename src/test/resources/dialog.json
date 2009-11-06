@@ -1,3 +1,4 @@
+{
 "dialog" : [
 	{
 		"id":"0",
@@ -39,7 +40,7 @@
 			"reqQuest":0,
 			"reqQuestStatus":0,
 			"dialogId":"1",
-			"redirectUrl":""
+			"redirectUrl":"TOPARSEorg.infinite.web.PagesCst.PAGE_SHOP"
 			},
 			{
 			"answer":"Nice to meet you, any rumor in this town?",
@@ -88,3 +89,4 @@
 		]
 	}	
 ]
+}

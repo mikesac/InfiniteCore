@@ -46,6 +46,7 @@
 		</property>
 	</bean>
 
+	<bean id="DialogEngine" class="org.infinite.engines.dialog.DialogEngine"></bean>
 
 	<!-- Dao Management + DB configuration -->
 
