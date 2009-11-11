@@ -69,6 +69,10 @@ public class MapEngine {
 	
 	public int getAreaStatus(Character p , AreaItem ai){
 		
+		//this one is done for admin section which does not have a player logged in
+		if(p==null){
+			return AREA_STATUS_ACCESSIBLE;
+		}
 		
 		//if i'm on the area it cannot be unaccessible
 		if( ai.getId().equals( p.getAreaItem().getId()) ){

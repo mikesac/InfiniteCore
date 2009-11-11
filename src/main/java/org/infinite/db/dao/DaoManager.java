@@ -23,6 +23,8 @@ public interface DaoManager {
 	
 	ArrayList<Item> getItemsByName(String[] itemsNames);
 	
+	Item getItemById(int itemId);
+	
 	
 	/* ------------------ SPELLS ------------------ */
 	
@@ -30,7 +32,7 @@ public interface DaoManager {
 	
 	ArrayList<Spell> getSpellsByNameAndType(String[] spellsNames,int spellType);
 	
-
+	Spell getSpellById(int spellId);
 	
 	
 	/* ------------------ NPC ------------------ */
@@ -92,6 +94,14 @@ public interface DaoManager {
 	boolean create(Object dto);
 	
 	boolean update(Object dto);
+
+	ArrayList<String> getAreaItemsIcons();
+
+	ArrayList<Area> listAllArea();
+
+	
+
+	
 
 	
 

@@ -29,17 +29,21 @@ public class HibernateDbManager implements DbManager{
 	 */
 
 	@SuppressWarnings("unchecked")
+	public ArrayList<?> listByQuery(String query){		
+		return (ArrayList<Object>) getHibernateTemplate().find(query);
+	}
+
+	@SuppressWarnings("unchecked")
 	public ArrayList<?> listByQuery(String className, String condition){		
 		return (ArrayList<Object>) getHibernateTemplate().find("from "+className+" where "+condition);
 	}
-
 
 	public Object findById(String className, int id) {
 		return getHibernateTemplate().get(className, id);
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<?> listAllDto(String className) throws Exception{	
+	public ArrayList<?> listAllDto(String className){	
 		return (ArrayList<Object>)listByQuery(className,"'1'='1'");
 	}
 

@@ -14,6 +14,8 @@ public interface DbManager {
 	
 	Object findById(String className, int id);
     
-	ArrayList<?> listAllDto(String className) throws Exception;
+	ArrayList<?> listAllDto(String className);
+
+	ArrayList<?> listByQuery(String query);
 
 }

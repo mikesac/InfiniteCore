@@ -64,7 +64,10 @@ public class BaseDaoManager implements DaoManager{
 	public ArrayList<Item> getItemsByTypeAndLevel(int itemType, int maxItemLevel){
 		return (ArrayList<Item>) getManager().listByQuery(Item.class.getName(),"type='"+itemType+"' and level<='"+maxItemLevel+"'");
 	}
-
+	
+	public Item getItemById(int itemId){
+		return (Item) getManager().findById(Item.class.getName(), itemId);
+	}
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Item> getItemsByName(String[] itemsNames){
@@ -90,6 +93,10 @@ public class BaseDaoManager implements DaoManager{
 		return (ArrayList<Spell>) getManager().listByQuery(Spell.class.getName(),"level<='"+maxSpellLevel+"'");
 	}
 
+	public Spell getSpellById(int spellId){
+		return (Spell) getManager().findById(Spell.class.getName(), spellId);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Spell> getSpellsByNameAndType(String[] spellsNames,int spellType){
 
@@ -138,6 +145,11 @@ public class BaseDaoManager implements DaoManager{
 	public Area getArea(Integer areaid) {
 		return (Area) getManager().findById(Area.class.getName(), areaid);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Area> listAllArea() {
+		return (ArrayList<Area>) getManager().listAllDto(Area.class.getName());
+	}
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<AreaItem> getAreaItems(Integer areaId) {
@@ -151,6 +163,11 @@ public class BaseDaoManager implements DaoManager{
 	
 	public AreaItem getStartingAreaItem(){		
 		return (AreaItem) getManager().findById(AreaItem.class.getName(), 1);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getAreaItemsIcons(){
+		return (ArrayList<String>)getManager().listByQuery("select distinct icon from "+ AreaItem.class.getName() );
 	}
 
 	/* ------------------ Player ------------------ */
@@ -178,11 +195,7 @@ public class BaseDaoManager implements DaoManager{
 		return (ArrayList<Player>)getManager().listByQuery(Player.class.getName()," level <= '"+(c.getLevel()+3)+"' and level>='"+(c.getLevel()-3)+"' and id!='"+c.getDao().getId()+"' and areaItem.id='"+c.getDao().getAreaItem().getId()+"'");
 	}
 
-	
-	
-	
-	
-	
+		
 	/* ------------ USERS ------------- */
 	public TomcatUsers getTomcatUsers(String userName) {
 		return (TomcatUsers) getManager().listByQuery(TomcatUsers.class.getName(), "user='"+userName+"'").get(0);
