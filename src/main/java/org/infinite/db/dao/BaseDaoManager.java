@@ -85,6 +85,11 @@ public class BaseDaoManager implements DaoManager{
 		return (ArrayList<Item>) getManager().listByQuery(Item.class.getName(), query );
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Item> getItemList(){
+		return (ArrayList<Item>) getManager().listAllDto(Item.class.getName());
+	}
 
 	/* ------------------ SPELLS ------------------ */
 
@@ -95,6 +100,11 @@ public class BaseDaoManager implements DaoManager{
 
 	public Spell getSpellById(int spellId){
 		return (Spell) getManager().findById(Spell.class.getName(), spellId);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Spell> getSpellList(){
+		return (ArrayList<Spell>) getManager().listAllDto(Spell.class.getName());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -116,13 +126,19 @@ public class BaseDaoManager implements DaoManager{
 		return (ArrayList<Spell>) getManager().listByQuery(Spell.class.getName(), query );
 	}
 
-
+	/* ------------------ NPCs ------------------ */
+	
 	public Npc getNpcByName(String name) {		
 		return (Npc)getManager().listByQuery(Npc.class.getName(), "name='"+name+"'").get(0);
 	}
 	
 	public Npc getNpcById(int id) {		
 		return (Npc)getManager().findById(Npc.class.getName(), id );
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Npc> getNPCList(){
+		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " and  ismonster=0");
 	}
 
 
@@ -183,6 +199,7 @@ public class BaseDaoManager implements DaoManager{
 
 	}
 
+	/* ------------------ NPCs ------------------ */
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Npc> getMonsterList(int monsterLevel){
@@ -193,6 +210,11 @@ public class BaseDaoManager implements DaoManager{
 	@SuppressWarnings("unchecked")
 	public ArrayList<Player> getOtherPlayerInArea(Character c){		
 		return (ArrayList<Player>)getManager().listByQuery(Player.class.getName()," level <= '"+(c.getLevel()+3)+"' and level>='"+(c.getLevel()-3)+"' and id!='"+c.getDao().getId()+"' and areaItem.id='"+c.getDao().getAreaItem().getId()+"'");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Npc> getMonsterList(){
+		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " and  ismonster=1");
 	}
 
 		

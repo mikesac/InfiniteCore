@@ -1,114 +1,133 @@
 package org.infinite.util;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.HeadlessException;
-import java.awt.Image;
-import java.awt.Transparency;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.awt.image.PixelGrabber;
+import java.awt.image.ColorModel;
+import java.awt.image.IndexColorModel;
+import java.awt.image.WritableRaster;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 import org.infinite.objects.Map;
 
 public final class ImageUtil {
 
-	
-	private ImageUtil(){}
-	
+
+
+	public static BufferedImage scaleImage(BufferedImage img, int width, int height){
+
+		AffineTransform tx = new AffineTransform();
+		tx.scale(width, height);
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+
+		return op.filter(img, null);
+		//toBufferedImage(img.getScaledInstance(width, height, Image.SCALE_SMOOTH) );
+	}
+
+	public static BufferedImage cropImage(BufferedImage img, int start_x, int start_y, int width, int height){
+		return img.getSubimage(start_x, start_y, width, height);
+	}
+
+	public static BufferedImage getImagefromStream(InputStream is) throws IOException{
+		return ImageIO.read(is);
+	}
+
+	public static ByteArrayOutputStream setImageToStream( BufferedImage img, String format) throws IOException{
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+		if(format.equalsIgnoreCase("jpg"))
+		{
+			BufferedImage jpgImage = null;
+			if (img.getType() == BufferedImage.TYPE_CUSTOM) {
+				jpgImage = new BufferedImage(img.getWidth(),img.getHeight(),BufferedImage.TYPE_INT_RGB);
+			} else {
+				jpgImage = new BufferedImage(img.getWidth(), img.getHeight(), img.getType() );
+			}
+
+			//copy the original to the new image
+			Graphics2D g2 = null;
+			try {
+				g2 = jpgImage.createGraphics();
+				g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+				g2.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), Color.WHITE, null); //this is to force background color to be white
+				g2.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
+			}
+			finally {
+				if (g2 != null) {
+					g2.dispose();
+				}
+			}
+			img = jpgImage;
+
+		}
+		else if(format.equalsIgnoreCase("gif")){
+			img = convertRGBAToIndexed(img);
+		}		
+		ImageIO.write(img,format,out);
+		
+		return out;
+	}
+
 	public static BufferedImage prepareMapStripes(InputStream is,int nx,int ny,String path) throws IOException{
-		
-		BufferedImage img =  ImageIO.read(is);
-		
+
 		//first scale
-		BufferedImage scaledImg = toBufferedImage(img.getScaledInstance(Map.MAP_WIDTH, Map.MAP_HEIGHT, Image.SCALE_SMOOTH) );
-		
+		BufferedImage scaledImg =  scaleImage( getImagefromStream(is),Map.MAP_WIDTH, Map.MAP_HEIGHT );
+
 		int w = Map.MAP_WIDTH/nx;
 		int h = Map.MAP_HEIGHT/ny;
-		
+
 		for (int i = 0; i < ny; i++) {
 			for (int j = 0; j < nx; j++) {
-				
-				int x = w*j;
-				int y = h*i;
-				BufferedImage crop = scaledImg.getSubimage(x, y, w, h);
-				
+				BufferedImage crop = cropImage(scaledImg, w*j, h*i, w, h);
+
 				File f = new File(path+"/crop_"+i+j+".jpg");
 				ImageIO.write(crop, "jpg", f);
 			}
 		}
-		
-				
+
+
 		return null;
 	}
-	
-	
-	
 
-	 public static BufferedImage toBufferedImage(Image myImage) {
 
-	        if (myImage instanceof BufferedImage) {return (BufferedImage)myImage;}	   
 
-	        // This code ensures that all the pixels in the image are loaded
-	        Image image = new ImageIcon(myImage).getImage();
-   
-	        // Determine if the image has transparent pixels
-	        boolean hasAlpha = false;//hasAlpha(image);
-
-	        // Create a buffered image with a format that's compatible with the screen
-	        BufferedImage bimage = null;
-	        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-
-	        try {
-
-	            // Determine the type of transparency of the new buffered image
-	            int transparency = Transparency.OPAQUE;
-	            if (hasAlpha == true) {transparency = Transparency.BITMASK;}
-  
-	            // Create the buffered image
-	            GraphicsDevice gs = ge.getDefaultScreenDevice();
-	            GraphicsConfiguration gc = gs.getDefaultConfiguration();
-	            bimage = gc.createCompatibleImage(image.getWidth(null), image.getHeight(null), transparency);
-	        }
-
-	        catch (HeadlessException e) {e.printStackTrace();} //No screen
-	   
-	        if (bimage == null) {
-	            // Create a buffered image using the default color model
-	            int type = BufferedImage.TYPE_INT_RGB;
-	            if (hasAlpha == true) {type = BufferedImage.TYPE_INT_ARGB;}
-	            bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), type);
-	        }
-   
-	        // Copy image to buffered image
-	        Graphics g = bimage.createGraphics();
- 
-	        // Paint the image onto the buffered image
-	        g.drawImage(image, 0, 0, null);
-	        g.dispose();
-	   
-	        return bimage;
-	    }
- 
-
-	      public static boolean hasAlpha(Image image) {
-	             // If buffered image, the color model is readily available
-	             if (image instanceof BufferedImage) {return ((BufferedImage)image).getColorModel().hasAlpha();}
-         
-	             // Use a pixel grabber to retrieve the image's color model;
-	             // grabbing a single pixel is usually sufficient
-	             PixelGrabber pg = new PixelGrabber(image, 0, 0, 1, 1, false);
-	             try {pg.grabPixels();} catch (InterruptedException e) {}
-	         
-	             // Get the image's color model
-	             return pg.getColorModel().hasAlpha();
-	         }
-
+	private static BufferedImage convertRGBAToIndexed(BufferedImage src) {
+		BufferedImage dest = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_BYTE_INDEXED);
+		Graphics g = dest.getGraphics();
+		g.setColor(new Color(231,20,189));
+		g.fillRect(0, 0, dest.getWidth(), dest.getHeight()); //fill with a hideous color and make it transparent
+		dest = makeTransparent(dest,0,0);
+		dest.createGraphics().drawImage(src,0,0, null);
+		return dest;
 	}
+
+	private static BufferedImage makeTransparent(BufferedImage image, int x, int y) {
+		ColorModel cm = image.getColorModel();
+		if (!(cm instanceof IndexColorModel))
+			return image; //sorry...
+		IndexColorModel icm = (IndexColorModel) cm;
+		WritableRaster raster = image.getRaster();
+		int pixel = raster.getSample(x, y, 0); //pixel is offset in ICM's palette
+		int size = icm.getMapSize();
+		byte[] reds = new byte[size];
+		byte[] greens = new byte[size];
+		byte[] blues = new byte[size];
+		icm.getReds(reds);
+		icm.getGreens(greens);
+		icm.getBlues(blues);
+		IndexColorModel icm2 = new IndexColorModel(8, size, reds, greens, blues, pixel);
+		return new BufferedImage(icm2, raster, image.isAlphaPremultiplied(), null);
+	}
+
+}
+

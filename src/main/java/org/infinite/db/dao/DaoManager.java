@@ -99,6 +99,14 @@ public interface DaoManager {
 
 	ArrayList<Area> listAllArea();
 
+	ArrayList<Spell> getSpellList();
+
+	ArrayList<Item> getItemList();
+
+	ArrayList<Npc> getMonsterList();
+
+	ArrayList<Npc> getNPCList();
+
 	
 
 	
