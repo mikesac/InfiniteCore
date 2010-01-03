@@ -107,15 +107,11 @@ public interface DaoManager {
 
 	ArrayList<Npc> getNPCList();
 
-	
+	ArrayList<Item> getItemListByType(int type);
 
-	
+	ArrayList<Spell> getSpellListByType(int type);
 
-	
-
-	
-
-	
+	ArrayList<Npc> getNPCList(int monsterLevel);	
 	
 	
 }

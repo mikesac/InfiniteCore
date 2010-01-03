@@ -1,11 +1,10 @@
 package org.infinite.util;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.IndexColorModel;
@@ -23,15 +22,25 @@ public final class ImageUtil {
 
 
 
-	public static BufferedImage scaleImage(BufferedImage img, int width, int height){
+	public static BufferedImage scaleImage(BufferedImage image, int width, int height){
+		int type = image.getType() == 0? BufferedImage.TYPE_INT_ARGB : image.getType();
+		BufferedImage resizedImage = new BufferedImage(width, height, type);
+		Graphics2D g = resizedImage.createGraphics();
+		g.setComposite(AlphaComposite.Src);
 
-		AffineTransform tx = new AffineTransform();
-		tx.scale(width, height);
-		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+		RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
-		return op.filter(img, null);
-		//toBufferedImage(img.getScaledInstance(width, height, Image.SCALE_SMOOTH) );
-	}
+		g.setRenderingHint(RenderingHints.KEY_RENDERING,
+		RenderingHints.VALUE_RENDER_QUALITY);
+
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g.drawImage(image, 0, 0, width, height, null);
+		g.dispose();
+		return resizedImage;
+		}
 
 	public static BufferedImage cropImage(BufferedImage img, int start_x, int start_y, int width, int height){
 		return img.getSubimage(start_x, start_y, width, height);

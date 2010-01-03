@@ -86,9 +86,27 @@ public class BaseDaoManager implements DaoManager{
 
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Item> getItemList(){
 		return (ArrayList<Item>) getManager().listAllDto(Item.class.getName());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Item> getItemListByType(int type){
+
+		ArrayList<Item> out = null;
+		
+		if(type>=0){
+			String query = "type='"+type+"'";
+			out = (ArrayList<Item>) getManager().listByQuery(Item.class.getName(), query );
+		}
+		else{
+			out = (ArrayList<Item>) getManager().listAllDto(Item.class.getName());
+		}
+
+		return out; 
+
 	}
 
 	/* ------------------ SPELLS ------------------ */
@@ -105,6 +123,23 @@ public class BaseDaoManager implements DaoManager{
 	@SuppressWarnings("unchecked")
 	public ArrayList<Spell> getSpellList(){
 		return (ArrayList<Spell>) getManager().listAllDto(Spell.class.getName());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Spell> getSpellListByType(int type){
+
+		ArrayList<Spell> out = null;
+		
+		if(type>=0){
+			String query = "spelltype='"+type+"'";
+			out = (ArrayList<Spell>) getManager().listByQuery(Spell.class.getName(), query );
+		}
+		else{
+			out = (ArrayList<Spell>) getManager().listAllDto(Spell.class.getName());
+		}
+
+		return out; 
+
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -138,14 +173,19 @@ public class BaseDaoManager implements DaoManager{
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Npc> getNPCList(){
-		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " and  ismonster=0");
+		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), "ismonster='0'");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Npc> getNPCList(int monsterLevel){
+		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " level="+monsterLevel+" and ismonster='0'");
 	}
 
 
 	@SuppressWarnings("unchecked")
 	public String[] getMonsterListing(){
 
-		ArrayList<Npc> l = (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(),"ismonster=1");
+		ArrayList<Npc> l = (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(),"ismonster='1'");
 
 		String[] s = new String[l.size()];
 		for (int i = 0; i < l.size(); i++) {
@@ -203,7 +243,7 @@ public class BaseDaoManager implements DaoManager{
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Npc> getMonsterList(int monsterLevel){
-		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " level="+monsterLevel+" and  ismonster=1");
+		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " level="+monsterLevel+" and  ismonster='1'");
 	}
 	
 	
@@ -214,7 +254,7 @@ public class BaseDaoManager implements DaoManager{
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Npc> getMonsterList(){
-		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " and  ismonster=1");
+		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " ismonster='1'");
 	}
 
 		
