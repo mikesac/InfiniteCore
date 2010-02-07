@@ -21,6 +21,7 @@ import org.infinite.engines.items.ItemsInterface;
 import org.infinite.engines.magic.MagicEngine;
 import org.infinite.engines.map.InaccessibleAreaException;
 import org.infinite.engines.map.MapEngine;
+import org.infinite.engines.quests.QuestsEngine;
 import org.infinite.util.GenericUtil;
 import org.infinite.util.InfiniteCst;
 
@@ -1192,6 +1193,25 @@ public class Character implements PlayerInterface, ItemsInterface {
 
 	public ArrayList<PlayerOwnQuest> getQuests() {
 		return quests;
+	}
+	
+	public boolean isPlayerOnQuest(long questId, long questStatus) {
+			
+		boolean ret = false;
+		
+		for (PlayerOwnQuest q : quests) {
+			if(q.getQuest().getId() == questId && q.getStatus()==questStatus){
+				ret = true;
+				break;
+			}
+		}
+		
+		//if players is not on quest and you are requesting it as not assigned, return true
+		if(ret==false && questStatus==QuestsEngine.QUEST_STATUS_UNASSIGNED){
+			ret = true;
+		}
+		
+		return ret;
 	}
 
 

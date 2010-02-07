@@ -1,10 +1,9 @@
 package org.infinite.engines.dialog;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+import java.util.List;
 
 import org.infinite.engines.dialog.dto.Dialog;
 import org.infinite.util.TestUtil;
@@ -27,7 +26,12 @@ public class DialogEngineTest {
 	public void testDialog(){
 		
 		try {
-			ArrayList<Dialog> dialogs = engine.getDialogData("dialog.json");
+			
+			//FileInputStream ifs = new FileInputStream("/var/www/infinite/data/dialogs/npc/merch1.json");
+//			ArrayList<Dialog> dialogs = engine.getDialogData(ifs);
+			
+			List<Dialog> dialogs = engine.getDialogData( this.getClass().getResourceAsStream("dialog.json") );
+			
 			assertNotNull(dialogs);
 			
 			Dialog d = engine.selectDialog(0, dialogs);

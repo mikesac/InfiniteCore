@@ -20,7 +20,7 @@ import org.infinite.objects.Map;
 
 public final class ImageUtil {
 
-
+	private ImageUtil(){}  //This class cannot be instantiated.
 
 	public static BufferedImage scaleImage(BufferedImage image, int width, int height){
 		int type = image.getType() == 0? BufferedImage.TYPE_INT_ARGB : image.getType();
@@ -42,8 +42,8 @@ public final class ImageUtil {
 		return resizedImage;
 		}
 
-	public static BufferedImage cropImage(BufferedImage img, int start_x, int start_y, int width, int height){
-		return img.getSubimage(start_x, start_y, width, height);
+	public static BufferedImage cropImage(BufferedImage img, int startX, int startY, int width, int height){
+		return img.getSubimage(startX, startY, width, height);
 	}
 
 	public static BufferedImage getImagefromStream(InputStream is) throws IOException{
@@ -53,7 +53,7 @@ public final class ImageUtil {
 	public static ByteArrayOutputStream setImageToStream( BufferedImage img, String format) throws IOException{
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-
+		BufferedImage outImg = img;
 		if(format.equalsIgnoreCase("jpg"))
 		{
 			BufferedImage jpgImage = null;
@@ -76,13 +76,13 @@ public final class ImageUtil {
 					g2.dispose();
 				}
 			}
-			img = jpgImage;
+			outImg = jpgImage;
 
 		}
 		else if(format.equalsIgnoreCase("gif")){
-			img = convertRGBAToIndexed(img);
+			outImg = convertRGBAToIndexed(img);
 		}		
-		ImageIO.write(img,format,out);
+		ImageIO.write(outImg,format,out);
 		
 		return out;
 	}
@@ -122,8 +122,9 @@ public final class ImageUtil {
 
 	private static BufferedImage makeTransparent(BufferedImage image, int x, int y) {
 		ColorModel cm = image.getColorModel();
-		if (!(cm instanceof IndexColorModel))
+		if (!(cm instanceof IndexColorModel)){
 			return image; //sorry...
+		}
 		IndexColorModel icm = (IndexColorModel) cm;
 		WritableRaster raster = image.getRaster();
 		int pixel = raster.getSample(x, y, 0); //pixel is offset in ICM's palette

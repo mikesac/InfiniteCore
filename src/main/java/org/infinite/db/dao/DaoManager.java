@@ -21,6 +21,8 @@ public interface DaoManager {
 	
 	ArrayList<Item> getItemsByTypeAndLevel(int itemType, int maxItemLevel);
 	
+	ArrayList<Item> getItemsToShop(Npc npc);
+	
 	ArrayList<Item> getItemsByName(String[] itemsNames);
 	
 	Item getItemById(int itemId);
@@ -31,6 +33,8 @@ public interface DaoManager {
 	ArrayList<Spell> getSpellsByLevel(int maxSpellLevel);
 	
 	ArrayList<Spell> getSpellsByNameAndType(String[] spellsNames,int spellType);
+	
+	ArrayList<Spell> getSpellToShop(Npc npc);
 	
 	Spell getSpellById(int spellId);
 	

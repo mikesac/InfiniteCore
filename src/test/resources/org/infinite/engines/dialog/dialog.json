@@ -1,92 +1,340 @@
 {
-"dialog" : [
-	{
-		"id":0,
-		"sentence":"Welcome stranger, how are you?",
-		"answers":[
-			{
-			"answer":"Fine thanks, I'd like to trade",
-			"reqLevel":0,
-			"reqQuest":0,
-			"reqQuestStatus":0,
-			"dialogId":1,
-			"redirectUrl":""
-			},
-			{
-			"answer":"Nice to meet you, any rumor in this town?",
-			"reqLevel":0,
-			"reqQuest":0,
-			"reqQuestStatus":0,
-			"dialogId":2,
-			"redirectUrl":""
-			},
-			{
-			"answer":"Not your bussines see ya!",
-			"reqLevel":0,
-			"reqQuest":0,
-			"reqQuestStatus":0,
-			"dialogId":3,
-			"redirectUrl":""
-			}
-		]
-	},
-	{
-		"id":1,
-		"sentence":"Welcome stranger, how are you?",
-		"answers":[
-			{
-			"answer":"Fine thanks, I'd like to trade",
-			"reqLevel":0,
-			"reqQuest":0,
-			"reqQuestStatus":0,
-			"dialogId":1,
-			"redirectUrl":"TOPARSEorg.infinite.web.PagesCst.PAGE_SHOP"
-			},
-			{
-			"answer":"Nice to meet you, any rumor in this town?",
-			"reqLevel":0,
-			"reqQuest":0,
-			"reqQuestStatus":0,
-			"dialogId":2,
-			"redirectUrl":""
-			},
-			{
-			"answer":"Not your bussines see ya!",
-			"reqLevel":0,
-			"reqQuest":0,
-			"reqQuestStatus":0,
-			"dialogId":3,
-			"redirectUrl":""
-			}
-		]
-	},
-	{
-		"id":2,
-		"sentence":"Rumors? Nope, this is a really quiet town!",
-		"answers":[
-			{
-			"answer":"Never mind, see you",
-			"reqLevel":0,
-			"reqQuest":0,
-			"reqQuestStatus":0,
-			"dialogId":1,
-			"redirectUrl":""
-			}
-		]
-	},
-	{
-		"id":3,
-		"sentence":"Ok, see you soon!",
-		"answers":[
-			{
-			"answer":"back to map",
-			"reqLevel":0,
-			"reqQuest":0,
-			"reqQuestStatus":0,
-			"dialogId":1,
-			"redirectUrl":"TOPARSEorg.infinite.web.PagesCst.PAGE_MAP"
-			}
-		]
-	}	
-]
+    "dialog":[
+        {
+            "id":0,
+            "sentence":"Greetings stranger! Welcome to our little town! How can I help you?",
+            "answers":[
+                {
+                    "answer":"Hello pal, I'm new around and I'd like to have some direction",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":1,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"Nice to meet you, any rumor in this town?",
+                    "reqLevel":0,
+                    "strict":true,
+                    "reqQuest":1,
+                    "reqQuestStatus":0,
+                    "dialogId":6,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"Nice to meet you, any rumor in this town?",
+                    "reqLevel":1,
+                    "strict":false,
+                    "reqQuest":1,
+                    "reqQuestStatus":0,
+                    "dialogId":7,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"Nice to meet you, any rumor in this town?",
+                    "reqLevel":1,
+                    "strict":false,
+                    "reqQuest":1,
+                    "reqQuestStatus":2,
+                    "dialogId":8,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"Nice to meet you, any rumor in this town?",
+                    "reqLevel":1,
+                    "strict":false,
+                    "reqQuest":1,
+                    "reqQuestStatus":1,
+                    "dialogId":10,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"Nice to meet you, any rumor in this town?",
+                    "reqLevel":1,
+                    "strict":false,
+                    "reqQuest":1,
+                    "reqQuestStatus":3,
+                    "dialogId":0,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"Nice to meet you, any rumor in this town?",
+                    "reqLevel":1,
+                    "strict":false,
+                    "reqQuest":1,
+                    "reqQuestStatus":4,
+                    "dialogId":7,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"I'm looking for items, can you sell me something?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/shop.html"
+                },
+                {
+                    "answer":"Never mind, see you!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                }
+            ]
+        },
+        {
+            "id":1,
+            "sentence":"I'm you man, which information do you need?",
+            "answers":[
+                {
+                    "answer":"What I need to fight?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":2,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"What I need to use magic?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":3,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"How does battle works?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":4,
+                    "redirectUrl":""
+                },
+                {
+                    "answer":"How does movement works?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":5,
+                    "redirectUrl":""
+                }
+            ]
+        },
+        {
+            "id":2,
+            "sentence":"You can fight also with bare fist, but a good equipment would fit best. Use the Equip section to choose which items to wear.",
+            "answers":[
+                {
+                    "answer":"Thanks a lot, see you!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                },
+                {
+                    "answer":"May I ask you some more questions?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":0,
+                    "redirectUrl":""
+                }
+            ]
+        },
+        {
+            "id":3,
+            "sentence":"Magic is not for everybody! First of all you need a smart brain, raise your Intelligence as much as you can an then find a good magic teacher.",
+            "answers":[
+                {
+                    "answer":"Thanks a lot, see you!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                },
+                {
+                    "answer":"May I ask you some more questions?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":0,
+                    "redirectUrl":""
+                }
+            ]
+        },
+        {
+            "id":4,
+            "sentence":"Strategy is fundamental, choose your best weapons and spells sequence to be used in battle, but take care not to waste your Action Points",
+            "answers":[
+                {
+                    "answer":"Thanks a lot, see you!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                },
+                {
+                    "answer":"May I ask you some more questions?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":0,
+                    "redirectUrl":""
+                }
+            ]
+        },
+        {
+            "id":5,
+            "sentence":"You can move on on the AreaItem on the Map, but sometimes and AreaItem may be locked or inaccessible due to your position, level or other.",
+            "answers":[
+                {
+                    "answer":"Thanks a lot, see you!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                },
+                {
+                    "answer":"May I ask you some more questions?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":0,
+                    "redirectUrl":""
+                }
+            ]
+        },
+        {
+            "id":6,
+            "sentence":"Rumors? We have a little problem, but you do not look strong enough for this, try coming back later.",
+            "answers":[
+                {
+                    "answer":"I'll grow stronger and come back.",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                },
+                {
+                    "answer":"May I ask you some more questions?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":0,
+                    "redirectUrl":""
+                }
+            ]
+        },
+        {
+            "id":7,
+            "sentence":"introduce quest",
+            "answers":[
+                {
+                    "answer":"Ok, I'll solve your problem!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/quest_act.html?act=0"
+                },
+                {
+                    "answer":"No way, see you!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                }
+            ]
+        },
+        {
+            "id":8,
+            "sentence":"quest reward",
+            "answers":[
+                {
+                    "answer":"Thanks a lot! Much appreciated!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/quest_act.html?act=2"
+                }
+            ]
+        },
+        {
+            "id":9,
+            "sentence":"post-quest dialog",
+            "answers":[
+                {
+                    "answer":"Thanks a lot, see you!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                },
+                {
+                    "answer":"May I ask you some more questions?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":0,
+                    "redirectUrl":""
+                }
+            ]
+        },
+        {
+            "id":10,
+            "sentence":"waiting for quest completion",
+            "answers":[
+                {
+                    "answer":"Thanks a lot, see you!",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":-1,
+                    "redirectUrl":"/player/map.html"
+                },
+                {
+                    "answer":"May I ask you some more questions?",
+                    "reqLevel":0,
+                    "strict":false,
+                    "reqQuest":0,
+                    "reqQuestStatus":0,
+                    "dialogId":0,
+                    "redirectUrl":""
+                }
+            ]
+        }
+    ]
 }

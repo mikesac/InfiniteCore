@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -11,6 +12,7 @@ import javax.script.ScriptException;
 
 import org.infinite.engines.dialog.dto.Answer;
 import org.infinite.engines.dialog.dto.Dialog;
+import org.infinite.objects.Character;
 import org.infinite.util.GenericUtil;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -28,6 +30,7 @@ public final class DialogEngine {
 
 	public static final String ANSWER			="answer";
 	public static final String ANSWER_REQ_LV	="reqLevel";
+	public static final String ANSWER_STRICT	="strict";
 	public static final String ANSWER_REQ_QID	="reqQuest";
 	public static final String ANSWER_REQ_QSTAT	="reqQuestStatus";
 	public static final String ANSWER_DIALOGID	="dialogId";
@@ -35,11 +38,11 @@ public final class DialogEngine {
 
 
 
-	public ArrayList<Dialog> getDialogData(String filename) throws IOException {
+	public List<Dialog> getDialogData(String filename) throws IOException {
 		return getDialogData( DialogEngine.class.getResourceAsStream(filename));
 	}
 
-	public ArrayList<Dialog> getDialogData(InputStream is) throws IOException {
+	public List<Dialog> getDialogData(InputStream is) throws IOException {
 
 		ArrayList<Dialog> out = new ArrayList<Dialog>();
 
@@ -50,25 +53,26 @@ public final class DialogEngine {
 		for(int i=0;i < dialogs.size();i++){
 
 			Dialog dialog = new Dialog();
-			JSONObject json_dialog =  (JSONObject) dialogs.get(i);
+			JSONObject jsonDialog =  (JSONObject) dialogs.get(i);
 
-			dialog.setId( (Long)json_dialog.get(DIALOG_ID) );
-			dialog.setSentence( (String)json_dialog.get(DIALOG_SENTENCE) );
+			dialog.setId( (Long)jsonDialog.get(DIALOG_ID) );
+			dialog.setSentence( (String)jsonDialog.get(DIALOG_SENTENCE) );
 
-			JSONArray json_answers = (JSONArray) json_dialog.get(DIALOG_ANSWERS);
+			JSONArray jsonAllAnswers = (JSONArray) jsonDialog.get(DIALOG_ANSWERS);
 			ArrayList<Answer> answers = new ArrayList<Answer>();
-			for(int j=0; j<json_answers.size();j++){
+			for(int j=0; j<jsonAllAnswers.size();j++){
 
 				Answer answer = new Answer();
 
-				JSONObject json_answer =  (JSONObject) json_answers.get(j);
+				JSONObject jsonAnswer =  (JSONObject) jsonAllAnswers.get(j);
 
-				answer.setAnswer(	(String) json_answer.get(ANSWER) );
-				answer.setReqLevel(	(Long)json_answer.get(ANSWER_REQ_LV) );
-				answer.setReqQuest(	(Long)json_answer.get(ANSWER_REQ_QID) );
-				answer.setReqQuestStatus( 	(Long)json_answer.get(ANSWER_REQ_QSTAT) );
-				answer.setDialogId(			(Long)json_answer.get(ANSWER_DIALOGID) );
-				answer.setRedirectUrl(		(String) json_answer.get(ANSWER_URL) );
+				answer.setAnswer(	(String) jsonAnswer.get(ANSWER) );
+				answer.setReqLevel(	(Long)jsonAnswer.get(ANSWER_REQ_LV) );
+				answer.setStrict( (Boolean)jsonAnswer.get(ANSWER_STRICT));
+				answer.setReqQuest(	(Long)jsonAnswer.get(ANSWER_REQ_QID) );
+				answer.setReqQuestStatus( 	(Long)jsonAnswer.get(ANSWER_REQ_QSTAT) );
+				answer.setDialogId(			(Long)jsonAnswer.get(ANSWER_DIALOGID) );
+				answer.setRedirectUrl(		(String) jsonAnswer.get(ANSWER_URL) );
 
 				answers.add(answer);
 			}
@@ -80,7 +84,7 @@ public final class DialogEngine {
 	}
 
 
-	public Dialog selectDialog(long id,ArrayList<Dialog> dialogs){
+	public Dialog selectDialog(long id,List<Dialog> dialogs){
 		
 		Dialog out = null;
 		for(Dialog d : dialogs){
@@ -90,6 +94,30 @@ public final class DialogEngine {
 			}
 		}
 		return out;
+	}
+	
+	public List<Answer> getAnswers(Dialog d, Character c){
+		
+		ArrayList<Answer> answers = new ArrayList<Answer>();
+		
+		for (Answer a : d.getAnswers()) {
+			
+			if( c.getLevel() < a.getReqLevel() ){
+				continue;
+			}
+			
+			//if it's a strict check it must be exactly the same
+			if( a.isStrict() && c.getLevel()!= a.getReqLevel()){
+				continue;
+			}
+			
+			if( a.getReqQuest()>0 && !c.isPlayerOnQuest( a.getReqQuest(), a.getReqQuestStatus()) ){
+				continue;
+			}
+			answers.add(a);
+		}
+	
+		return answers;
 	}
 	
 	public String evalCst(String input) throws Exception{

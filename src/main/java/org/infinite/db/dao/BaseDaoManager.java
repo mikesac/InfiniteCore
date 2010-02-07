@@ -108,6 +108,11 @@ public class BaseDaoManager implements DaoManager{
 		return out; 
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Item> getItemsToShop(Npc npc){		
+		return (ArrayList<Item>)getManager().listByQuery(Item.class.getName(),"level > '0' and level >= '"+ (npc.getLevel()-1) + "' and level <= '"+ (npc.getLevel()+1)+ "'");		
+	}
 
 	/* ------------------ SPELLS ------------------ */
 
@@ -161,6 +166,11 @@ public class BaseDaoManager implements DaoManager{
 		return (ArrayList<Spell>) getManager().listByQuery(Spell.class.getName(), query );
 	}
 
+	@SuppressWarnings("unchecked")
+	public ArrayList<Spell> getSpellToShop(Npc npc){		
+		return (ArrayList<Spell>)getManager().listByQuery(Spell.class.getName(),"level > '0' and level >= '"+ (npc.getLevel()-1) + "' and level <= '"+ (npc.getLevel()+1)+ "'");		
+	}
+	
 	/* ------------------ NPCs ------------------ */
 	
 	public Npc getNpcByName(String name) {		

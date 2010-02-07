@@ -3,10 +3,11 @@ package org.infinite.engines.dialog.dto;
 public class Answer {
 
 	private String answer;
-	private Long reqLevel;
-	private Long reqQuest;
-	private Long reqQuestStatus;
-	private Long dialogId;
+	private long reqLevel;
+	private boolean strict;
+	private long reqQuest;
+	private long reqQuestStatus;
+	private long dialogId;
 	private String redirectUrl;
 	
 	public String getAnswer() {
@@ -15,28 +16,28 @@ public class Answer {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public Long getReqLevel() {
+	public long getReqLevel() {
 		return reqLevel;
 	}
-	public void setReqLevel(Long reqLevel) {
+	public void setReqLevel(long reqLevel) {
 		this.reqLevel = reqLevel;
 	}
-	public Long getReqQuest() {
+	public long getReqQuest() {
 		return reqQuest;
 	}
-	public void setReqQuest(Long reqQuest) {
+	public void setReqQuest(long reqQuest) {
 		this.reqQuest = reqQuest;
 	}
-	public Long getReqQuestStatus() {
+	public long getReqQuestStatus() {
 		return reqQuestStatus;
 	}
-	public void setReqQuestStatus(Long reqQuestStatus) {
+	public void setReqQuestStatus(long reqQuestStatus) {
 		this.reqQuestStatus = reqQuestStatus;
 	}
-	public void setDialogId(Long dialogId) {
+	public void setDialogId(long dialogId) {
 		this.dialogId = dialogId;
 	}
-	public Long getDialogId() {
+	public long getDialogId() {
 		return dialogId;
 	}
 	public void setRedirectUrl(String redirectUrl) {
@@ -44,6 +45,12 @@ public class Answer {
 	}
 	public String getRedirectUrl() {
 		return redirectUrl;
+	}
+	public void setStrict(boolean strict) {
+		this.strict = strict;
+	}
+	public boolean isStrict() {
+		return strict;
 	}
 	
 }

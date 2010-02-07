@@ -24,7 +24,7 @@ this part of the application includes game object data and engines to manipulate
 	<parent>
 		<artifactId>InfiniteBase</artifactId>
 		<groupId>org.infiniteworld</groupId>
-		<version>1.0</version>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
 
 
