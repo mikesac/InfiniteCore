@@ -831,4 +831,8 @@ public String[] getMeleeAttacks( int round){
 		this.handLeft = handLeft;
 	}
 
+	@Override
+	public boolean isMonster() {
+		return true;
+	}
 }

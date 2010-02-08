@@ -70,6 +70,8 @@ public interface DaoManager {
 
 	ArrayList<Player> getOtherPlayerInArea(Character c);
 	
+	ArrayList<Player> getAllPlayerInArea(int areaItemID);
+	
 	/* ------------------ POI PKS SAP------------------ */
 
 	ArrayList<PlayerOwnItem> getPlayerItems(int playerID);

@@ -263,6 +263,12 @@ public class BaseDaoManager implements DaoManager{
 	}
 	
 	@SuppressWarnings("unchecked")
+	public
+	ArrayList<Player> getAllPlayerInArea(int areaItemID){
+		return (ArrayList<Player>)getManager().listByQuery(Player.class.getName()," areaItem.id='"+areaItemID+"'");
+	}
+	
+	@SuppressWarnings("unchecked")
 	public ArrayList<Npc> getMonsterList(){
 		return (ArrayList<Npc>)getManager().listByQuery(Npc.class.getName(), " ismonster='1'");
 	}

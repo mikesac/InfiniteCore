@@ -156,5 +156,5 @@ public interface PlayerInterface{
 
 	String[] getMeleeAttacks(int round);
 	
-
+	boolean isMonster();
 }

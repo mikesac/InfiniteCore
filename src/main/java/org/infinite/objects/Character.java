@@ -371,6 +371,10 @@ public class Character implements PlayerInterface, ItemsInterface {
 	public int getExperience(){
 		return getDao().getPx();
 	}
+	
+	public int getNextExperience(){
+		return AiEngine.getLevelPx( getLevel()+1 );
+	}
 
 	@Override
 	public int addExperience(int rewardPX){
@@ -1217,6 +1221,13 @@ public class Character implements PlayerInterface, ItemsInterface {
 
 	public short getPointsToAssing(){
 		return getDao().getAssign();
+	}
+
+
+
+	@Override
+	public boolean isMonster() {
+		return false;
 	}
 
 }
