@@ -8,14 +8,11 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="itemByGoalItem" class="org.infinite.db.dto.Item" fetch="select">
+        <many-to-one name="goalItem" class="org.infinite.db.dto.Item" fetch="select">
             <column name="goalItem" not-null="true" />
         </many-to-one>
-        <many-to-one name="itemByGrantItem" class="org.infinite.db.dto.Item" fetch="select">
+        <many-to-one name="grantItem" class="org.infinite.db.dto.Item" fetch="select">
             <column name="grantItem" not-null="true" />
-        </many-to-one>
-        <many-to-one name="quest" class="org.infinite.db.dto.Quest" fetch="select">
-            <column name="reqQuest" not-null="true" />
         </many-to-one>
         <property name="name" type="string">
             <column name="name" length="128" not-null="true" unique="true" />
@@ -26,8 +23,14 @@
         <property name="descrExecuted" type="string">
             <column name="descrExecuted" length="65535" not-null="true" />
         </property>
+        <property name="descrCompleted" type="string">
+            <column name="descrCompleted" length="65535" not-null="true" />
+        </property>
         <property name="reqLev" type="java.lang.Integer">
             <column name="reqLev" not-null="true" />
+        </property>
+        <property name="reqQuest" type="java.lang.Integer">
+            <column name="reqQuest" not-null="true" />
         </property>
         <property name="goalItemN" type="java.lang.Integer">
             <column name="goalItemN" not-null="true" />

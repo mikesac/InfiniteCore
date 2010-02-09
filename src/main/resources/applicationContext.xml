@@ -7,6 +7,15 @@
 	
 	<!-- Engines -->
 	
+	<bean id="QuestsEngine" class="org.infinite.engines.quests.QuestsEngine">
+		<property name="daoManager">
+			<ref bean="DaoManager" />
+		</property>
+		<property name="itemsEngine">
+			<ref bean="ItemsEngine" />
+		</property>
+	</bean>
+	
 	<bean id="MapEngine" class="org.infinite.engines.map.MapEngine">
 		<property name="daoManager">
 			<ref bean="DaoManager" />

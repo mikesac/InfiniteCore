@@ -19,6 +19,8 @@ public class Quest implements java.io.Serializable {
 	private String name;
 	private String descrPending;
 	private String descrExecuted;
+	private String descrCompleted;
+	private Integer reqQuest;
 	private Integer reqLev;
 	private Integer goalItemN;
 	private boolean repeat;
@@ -31,8 +33,8 @@ public class Quest implements java.io.Serializable {
 	}
 
 	public Quest(Item itemByGoalItem, Item itemByGrantItem, Quest quest,
-			String name, String descrPending, String descrExecuted,
-			Integer reqLev, Integer goalItemN, boolean repeat, float grantGold,
+			String name, String descrPending, String descrExecuted,String descrCompleted,
+			Integer reqLev,Integer reqQuest, Integer goalItemN, boolean repeat, float grantGold,
 			Integer grantXp) {
 		this.itemByGoalItem = itemByGoalItem;
 		this.itemByGrantItem = itemByGrantItem;
@@ -40,6 +42,8 @@ public class Quest implements java.io.Serializable {
 		this.name = name;
 		this.descrPending = descrPending;
 		this.descrExecuted = descrExecuted;
+		this.descrCompleted = descrCompleted;
+		this.reqQuest = reqQuest;
 		this.reqLev = reqLev;
 		this.goalItemN = goalItemN;
 		this.repeat = repeat;
@@ -48,8 +52,8 @@ public class Quest implements java.io.Serializable {
 	}
 
 	public Quest(Item itemByGoalItem, Item itemByGrantItem, Quest quest,
-			String name, String descrPending, String descrExecuted,
-			Integer reqLev, Integer goalItemN, boolean repeat, float grantGold,
+			String name, String descrPending, String descrExecuted,String descrCompleted,
+			Integer reqLev,Integer reqQuest, Integer goalItemN, boolean repeat, float grantGold,
 			Integer grantXp, Set<PlayerOwnQuest> playerOwnQuests,
 			Set<Quest> quests) {
 		this.itemByGoalItem = itemByGoalItem;
@@ -58,6 +62,8 @@ public class Quest implements java.io.Serializable {
 		this.name = name;
 		this.descrPending = descrPending;
 		this.descrExecuted = descrExecuted;
+		this.descrCompleted = descrCompleted;
+		this.reqQuest = reqQuest;
 		this.reqLev = reqLev;
 		this.goalItemN = goalItemN;
 		this.repeat = repeat;
@@ -75,19 +81,19 @@ public class Quest implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Item getItemByGoalItem() {
+	public Item getGoalItem() {
 		return this.itemByGoalItem;
 	}
 
-	public void setItemByGoalItem(Item itemByGoalItem) {
+	public void setGoalItem(Item itemByGoalItem) {
 		this.itemByGoalItem = itemByGoalItem;
 	}
 
-	public Item getItemByGrantItem() {
+	public Item getGrantItem() {
 		return this.itemByGrantItem;
 	}
 
-	public void setItemByGrantItem(Item itemByGrantItem) {
+	public void setGrantItem(Item itemByGrantItem) {
 		this.itemByGrantItem = itemByGrantItem;
 	}
 
@@ -177,6 +183,22 @@ public class Quest implements java.io.Serializable {
 
 	public void setQuests(Set<Quest> quests) {
 		this.quests = quests;
+	}
+
+	public void setDescrCompleted(String descrCompleted) {
+		this.descrCompleted = descrCompleted;
+	}
+
+	public String getDescrCompleted() {
+		return descrCompleted;
+	}
+
+	public void setReqQuest(Integer reqQuest) {
+		this.reqQuest = reqQuest;
+	}
+
+	public Integer getReqQuest() {
+		return reqQuest;
 	}
 
 }

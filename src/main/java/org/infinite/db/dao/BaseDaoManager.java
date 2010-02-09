@@ -10,6 +10,7 @@ import org.infinite.db.dto.Npc;
 import org.infinite.db.dto.Player;
 import org.infinite.db.dto.PlayerKnowSpell;
 import org.infinite.db.dto.PlayerOwnItem;
+import org.infinite.db.dto.PlayerOwnQuest;
 import org.infinite.db.dto.Spell;
 import org.infinite.db.dto.SpellAffectPlayer;
 import org.infinite.db.dto.TomcatRoles;
@@ -306,7 +307,11 @@ public class BaseDaoManager implements DaoManager{
 
 
 
-
+	@SuppressWarnings("unchecked")
+	public PlayerOwnQuest getPlayerOwnQuest(Character c, int questId){
+		ArrayList<PlayerOwnQuest> poq =(ArrayList<PlayerOwnQuest>) getManager().listByQuery(PlayerOwnQuest.class.getName(), " questID='"+questId+"' and playerID='"+c.getDao().getId()+"' "); 
+		return (poq==null)?null:poq.get(0);
+	}
 
 
 }

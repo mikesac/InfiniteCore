@@ -9,6 +9,7 @@ import org.infinite.db.dto.Npc;
 import org.infinite.db.dto.Player;
 import org.infinite.db.dto.PlayerKnowSpell;
 import org.infinite.db.dto.PlayerOwnItem;
+import org.infinite.db.dto.PlayerOwnQuest;
 import org.infinite.db.dto.Spell;
 import org.infinite.db.dto.SpellAffectPlayer;
 import org.infinite.db.dto.TomcatRoles;
@@ -117,7 +118,9 @@ public interface DaoManager {
 
 	ArrayList<Spell> getSpellListByType(int type);
 
-	ArrayList<Npc> getNPCList(int monsterLevel);	
+	ArrayList<Npc> getNPCList(int monsterLevel);
+
+	PlayerOwnQuest getPlayerOwnQuest(Character c, int questId);	
 	
 	
 }

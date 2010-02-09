@@ -241,4 +241,16 @@ public class ItemsEngine {
 
 	}
 
+	
+	public int getNumOfItemInInventory(PlayerInterface p, Item it){
+
+		int out = 0;
+		for(PlayerOwnItem poi : p.getInventory() ){
+			if(poi.getItem().getId() == it.getId()){
+				out++;
+			}
+		}
+		
+		return out;
+	}
 }
