@@ -11,6 +11,7 @@ import org.infinite.db.dto.Player;
 import org.infinite.db.dto.PlayerKnowSpell;
 import org.infinite.db.dto.PlayerOwnItem;
 import org.infinite.db.dto.PlayerOwnQuest;
+import org.infinite.db.dto.Quest;
 import org.infinite.db.dto.Spell;
 import org.infinite.db.dto.SpellAffectPlayer;
 import org.infinite.db.dto.TomcatRoles;
@@ -296,7 +297,7 @@ public class BaseDaoManager implements DaoManager{
 		return getManager().delete(dto);
 	}
 
-	public boolean create(Object dto){
+	public Integer create(Object dto){
 		return getManager().create(dto);
 	}
 
@@ -304,12 +305,13 @@ public class BaseDaoManager implements DaoManager{
 		return getManager().update(dto);
 	}
 
-
-
+	public Quest getQuestById( int questId){
+		return  (Quest) getManager().findById(Quest.class.getName(), questId);
+	}
 
 	@SuppressWarnings("unchecked")
 	public PlayerOwnQuest getPlayerOwnQuest(Character c, int questId){
-		ArrayList<PlayerOwnQuest> poq =(ArrayList<PlayerOwnQuest>) getManager().listByQuery(PlayerOwnQuest.class.getName(), " questID='"+questId+"' and playerID='"+c.getDao().getId()+"' "); 
+		ArrayList<PlayerOwnQuest> poq =(ArrayList<PlayerOwnQuest>) getManager().listByQuery(PlayerOwnQuest.class.getName() + " poq join fetch poq.quest ", " poq.quest='"+questId+"' and poq.player='"+c.getDao().getId()+"' "); 
 		return (poq==null)?null:poq.get(0);
 	}
 

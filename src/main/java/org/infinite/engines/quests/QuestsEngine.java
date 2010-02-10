@@ -39,15 +39,7 @@ public class QuestsEngine {
 	}
 
 
-	private void removeFromQuest(Character player,int poqId) {
-
-		for (int i = 0; i < player.getQuests().size(); i++) {
-			if( player.getQuests().get(i).getId() == poqId){
-				player.getQuests().remove(i);
-				break;
-			}			
-		}		
-	}
+	
 
 	public boolean isQuestAssigned(Character player,int questId){
 
@@ -62,22 +54,27 @@ public class QuestsEngine {
 		return assigned;
 	}
 
-	public void setQuestAssigned(Character player,Quest quest,boolean persist) {
+	public void setQuestAssigned(Character player,Quest quest) {
 
 		PlayerOwnQuest poq = new PlayerOwnQuest( player.getDao(),quest,QUEST_STATUS_PENDING,0);
 		player.addQuests(poq);
-		if( persist ){
-			getDaoManager().create(poq);
-		}
+		getDaoManager().create(poq);
 	}
 
 	public void setQuestExecuted(Character c, int questId)
-	{		
+	{	
+		//update status
 		PlayerOwnQuest poq = getDaoManager().getPlayerOwnQuest(c,questId);
 		poq.setStatus(QUEST_STATUS_EXECUTED);
-		c.addToInventory( poq.getQuest().getGoalItem(), getItemsEngine() );
-
 		getDaoManager().update(poq);
+		
+		//replace player quest with updated one
+		c.removeFromQuest(poq.getId());
+		c.addQuests(poq);
+		
+		//add quest item to inventory
+		Item it = getDaoManager().getItemById( poq.getQuest().getGoalItem() );
+		c.addToInventory( it, getItemsEngine() );		
 	}
 
 
@@ -86,18 +83,25 @@ public class QuestsEngine {
 		PlayerOwnQuest poq = getDaoManager().getPlayerOwnQuest(c,questId);
 		poq.setStatus(QUEST_STATUS_COMPLETED);
 		poq.setNcompleted( poq.getNcompleted() + 1 );
+		getDaoManager().update(poq);
+		
+		//replace player quest with updated one
+		c.removeFromQuest(poq.getId());
+		c.addQuests(poq);
 
+		//grant player quest rewards
 		c.addExperience( poq.getQuest().getGrantXp());
 		c.addGold( poq.getQuest().getGrantGold() );
-		c.addToInventory( poq.getQuest().getGrantItem(), getItemsEngine() );		
+		Item it = getDaoManager().getItemById( poq.getQuest().getGrantItem() );
+		c.addToInventory( it, getItemsEngine() );		
 
-		getDaoManager().update(poq);
+		
 	}
 
 	public void setQuestAborted(Character c, int questId)
 	{		
 		PlayerOwnQuest poq = getDaoManager().getPlayerOwnQuest(c,questId);
-		removeFromQuest(c, poq.getId());
+		c.removeFromQuest(poq.getId());
 		getDaoManager().delete(poq);
 	}
 
@@ -110,7 +114,7 @@ public class QuestsEngine {
 		{
 			if( 
 				poq.getStatus()== QUEST_STATUS_PENDING && //quest must be pending
-				poq.getQuest().getGoalItem().getId() == it.getId() && //must have my item as goal
+				poq.getQuest().getGoalItem() == it.getId() && //must have my item as goal
 				getItemsEngine().getNumOfItemInInventory(c, it) == poq.getQuest().getGoalItemN() // must have enough items to complete
 				)
 			{

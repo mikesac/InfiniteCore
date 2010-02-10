@@ -8,12 +8,12 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="goalItem" class="org.infinite.db.dto.Item" fetch="select">
+        <property name="goalItem" type="java.lang.Integer">
             <column name="goalItem" not-null="true" />
-        </many-to-one>
-        <many-to-one name="grantItem" class="org.infinite.db.dto.Item" fetch="select">
+        </property>
+        <property name="grantItem" type="java.lang.Integer">
             <column name="grantItem" not-null="true" />
-        </many-to-one>
+        </property>
         <property name="name" type="string">
             <column name="name" length="128" not-null="true" unique="true" />
         </property>
@@ -30,13 +30,13 @@
             <column name="reqLev" not-null="true" />
         </property>
         <property name="reqQuest" type="java.lang.Integer">
-            <column name="reqQuest" not-null="true" />
+            <column name="reqQuest" />
         </property>
         <property name="goalItemN" type="java.lang.Integer">
             <column name="goalItemN" not-null="true" />
         </property>
-        <property name="repeat" type="boolean">
-            <column name="repeat" not-null="true" />
+        <property name="repeats" type="boolean">
+            <column name="repeats" not-null="true" />
         </property>
         <property name="grantGold" type="float">
             <column name="grantGold" precision="12" scale="0" not-null="true" />
@@ -49,12 +49,6 @@
                 <column name="questID" not-null="true" />
             </key>
             <one-to-many class="org.infinite.db.dto.PlayerOwnQuest" />
-        </set>
-        <set name="quests" inverse="true">
-            <key>
-                <column name="reqQuest" not-null="true" />
-            </key>
-            <one-to-many class="org.infinite.db.dto.Quest" />
         </set>
     </class>
 </hibernate-mapping>

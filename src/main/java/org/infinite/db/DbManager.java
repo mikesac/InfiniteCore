@@ -8,7 +8,7 @@ public interface DbManager {
        
 	boolean delete(Object dto);    
 	
-	boolean create(Object dto);	
+	Integer create(Object dto);	
 	
 	boolean update(Object dto);	
 	

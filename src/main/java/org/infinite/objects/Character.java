@@ -1199,6 +1199,28 @@ public class Character implements PlayerInterface, ItemsInterface {
 		return quests;
 	}
 	
+	public PlayerOwnQuest getQuestByQuestId(int questId) {
+		
+		PlayerOwnQuest poq = null;
+		for(PlayerOwnQuest q: getQuests() ){
+			if( q.getQuest().getId() == questId){
+				poq = q;
+				break;
+			}
+		}
+		return poq;
+	}
+	
+	public void removeFromQuest(int poqId) {
+
+		for (int i = 0; i < getQuests().size(); i++) {
+			if( getQuests().get(i).getId() == poqId){
+				getQuests().remove(i);
+				break;
+			}			
+		}		
+	}
+	
 	public boolean isPlayerOnQuest(long questId, long questStatus) {
 			
 		boolean ret = false;

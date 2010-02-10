@@ -1,7 +1,5 @@
 package org.infinite.db.dto;
 
-// Generated 8-lug-2009 10.08.07 by Hibernate Tools 3.2.4.CR1
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,67 +8,61 @@ import java.util.Set;
  */
 public class Quest implements java.io.Serializable {
 
-	private static final long serialVersionUID = 6993854633291815743L;
 	
+	private static final long serialVersionUID = -4562364153227041843L;
 	private Integer id;
-	private Item itemByGoalItem;
-	private Item itemByGrantItem;
-	private Quest quest;
+	private Integer goalItem;
+	private Integer grantItem;
 	private String name;
 	private String descrPending;
 	private String descrExecuted;
 	private String descrCompleted;
-	private Integer reqQuest;
 	private Integer reqLev;
+	private Integer reqQuest;
 	private Integer goalItemN;
-	private boolean repeat;
+	private boolean repeats;
 	private float grantGold;
 	private Integer grantXp;
 	private Set<PlayerOwnQuest> playerOwnQuests = new HashSet<PlayerOwnQuest>(0);
-	private Set<Quest> quests = new HashSet<Quest>(0);
 
 	public Quest() {
 	}
 
-	public Quest(Item itemByGoalItem, Item itemByGrantItem, Quest quest,
-			String name, String descrPending, String descrExecuted,String descrCompleted,
-			Integer reqLev,Integer reqQuest, Integer goalItemN, boolean repeat, float grantGold,
+	public Quest(Integer goalItem, Integer grantItem, String name,
+			String descrPending, String descrExecuted, String descrCompleted,
+			Integer reqLev, Integer goalItemN, boolean repeats, float grantGold,
 			Integer grantXp) {
-		this.itemByGoalItem = itemByGoalItem;
-		this.itemByGrantItem = itemByGrantItem;
-		this.quest = quest;
+		this.goalItem = goalItem;
+		this.grantItem = grantItem;
 		this.name = name;
 		this.descrPending = descrPending;
 		this.descrExecuted = descrExecuted;
 		this.descrCompleted = descrCompleted;
-		this.reqQuest = reqQuest;
 		this.reqLev = reqLev;
 		this.goalItemN = goalItemN;
-		this.repeat = repeat;
+		this.repeats = repeats;
 		this.grantGold = grantGold;
 		this.grantXp = grantXp;
 	}
 
-	public Quest(Item itemByGoalItem, Item itemByGrantItem, Quest quest,
-			String name, String descrPending, String descrExecuted,String descrCompleted,
-			Integer reqLev,Integer reqQuest, Integer goalItemN, boolean repeat, float grantGold,
-			Integer grantXp, Set<PlayerOwnQuest> playerOwnQuests,
-			Set<Quest> quests) {
-		this.itemByGoalItem = itemByGoalItem;
-		this.itemByGrantItem = itemByGrantItem;
-		this.quest = quest;
+	public Quest(Integer goalItem, Integer grantItem, String name,
+			String descrPending, String descrExecuted, String descrCompleted,
+			Integer reqLev, Integer reqQuest, Integer goalItemN,
+			boolean repeats, float grantGold, Integer grantXp,
+			Set<PlayerOwnQuest> playerOwnQuests) {
+		this.goalItem = goalItem;
+		this.grantItem = grantItem;
 		this.name = name;
 		this.descrPending = descrPending;
 		this.descrExecuted = descrExecuted;
 		this.descrCompleted = descrCompleted;
-		this.reqQuest = reqQuest;
 		this.reqLev = reqLev;
+		this.reqQuest = reqQuest;
 		this.goalItemN = goalItemN;
-		this.repeat = repeat;
+		this.repeats = repeats;
 		this.grantGold = grantGold;
 		this.grantXp = grantXp;
 		this.playerOwnQuests = playerOwnQuests;
-		this.quests = quests;
 	}
 
 	public Integer getId() {
@@ -81,28 +73,20 @@ public class Quest implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Item getGoalItem() {
-		return this.itemByGoalItem;
+	public Integer getGoalItem() {
+		return this.goalItem;
 	}
 
-	public void setGoalItem(Item itemByGoalItem) {
-		this.itemByGoalItem = itemByGoalItem;
+	public void setGoalItem(Integer goalItem) {
+		this.goalItem = goalItem;
 	}
 
-	public Item getGrantItem() {
-		return this.itemByGrantItem;
+	public Integer getGrantItem() {
+		return this.grantItem;
 	}
 
-	public void setGrantItem(Item itemByGrantItem) {
-		this.itemByGrantItem = itemByGrantItem;
-	}
-
-	public Quest getQuest() {
-		return this.quest;
-	}
-
-	public void setQuest(Quest quest) {
-		this.quest = quest;
+	public void setGrantItem(Integer grantItem) {
+		this.grantItem = grantItem;
 	}
 
 	public String getName() {
@@ -129,12 +113,28 @@ public class Quest implements java.io.Serializable {
 		this.descrExecuted = descrExecuted;
 	}
 
+	public String getDescrCompleted() {
+		return this.descrCompleted;
+	}
+
+	public void setDescrCompleted(String descrCompleted) {
+		this.descrCompleted = descrCompleted;
+	}
+
 	public Integer getReqLev() {
 		return this.reqLev;
 	}
 
 	public void setReqLev(Integer reqLev) {
 		this.reqLev = reqLev;
+	}
+
+	public Integer getReqQuest() {
+		return this.reqQuest;
+	}
+
+	public void setReqQuest(Integer reqQuest) {
+		this.reqQuest = reqQuest;
 	}
 
 	public Integer getGoalItemN() {
@@ -145,12 +145,12 @@ public class Quest implements java.io.Serializable {
 		this.goalItemN = goalItemN;
 	}
 
-	public boolean isRepeat() {
-		return this.repeat;
+	public boolean isRepeats() {
+		return this.repeats;
 	}
 
-	public void setRepeat(boolean repeat) {
-		this.repeat = repeat;
+	public void setRepeats(boolean repeats) {
+		this.repeats = repeats;
 	}
 
 	public float getGrantGold() {
@@ -175,30 +175,6 @@ public class Quest implements java.io.Serializable {
 
 	public void setPlayerOwnQuests(Set<PlayerOwnQuest> playerOwnQuests) {
 		this.playerOwnQuests = playerOwnQuests;
-	}
-
-	public Set<Quest> getQuests() {
-		return this.quests;
-	}
-
-	public void setQuests(Set<Quest> quests) {
-		this.quests = quests;
-	}
-
-	public void setDescrCompleted(String descrCompleted) {
-		this.descrCompleted = descrCompleted;
-	}
-
-	public String getDescrCompleted() {
-		return descrCompleted;
-	}
-
-	public void setReqQuest(Integer reqQuest) {
-		this.reqQuest = reqQuest;
-	}
-
-	public Integer getReqQuest() {
-		return reqQuest;
 	}
 
 }
