@@ -176,11 +176,11 @@ public class BaseDaoManager implements DaoManager{
 	/* ------------------ NPCs ------------------ */
 	
 	public Npc getNpcByName(String name) {		
-		return (Npc)getManager().listByQuery(Npc.class.getName(), "name='"+name+"'").get(0);
+		return (Npc)getManager().listByQuery(Npc.class.getName() , " name='"+name+"'").get(0);
 	}
 	
-	public Npc getNpcById(int id) {		
-		return (Npc)getManager().findById(Npc.class.getName(), id );
+	public Npc getNpcById(int id) {	
+		return (Npc)getManager().findById(Npc.class.getName() ,id);
 	}
 	
 	@SuppressWarnings("unchecked")

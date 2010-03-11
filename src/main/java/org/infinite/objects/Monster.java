@@ -9,6 +9,7 @@ import org.infinite.db.dto.Item;
 import org.infinite.db.dto.Npc;
 import org.infinite.db.dto.PlayerKnowSpell;
 import org.infinite.db.dto.PlayerOwnItem;
+import org.infinite.db.dto.Quest;
 import org.infinite.db.dto.Spell;
 import org.infinite.db.dto.SpellAffectPlayer;
 import org.infinite.engines.fight.FightEngine;
@@ -834,5 +835,9 @@ public String[] getMeleeAttacks( int round){
 	@Override
 	public boolean isMonster() {
 		return true;
+	}
+	
+	public Quest getAvailableQuest(){
+		return getDaoManager().getQuestById( npc.getQuest() );
 	}
 }

@@ -49,7 +49,7 @@ public class Quest implements java.io.Serializable {
 			String descrPending, String descrExecuted, String descrCompleted,
 			Integer reqLev, Integer reqQuest, Integer goalItemN,
 			boolean repeats, float grantGold, Integer grantXp,
-			Set<PlayerOwnQuest> playerOwnQuests) {
+			Set<PlayerOwnQuest> playerOwnQuests, Set<Npc> npcs) {
 		this.goalItem = goalItem;
 		this.grantItem = grantItem;
 		this.name = name;

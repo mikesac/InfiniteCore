@@ -7,7 +7,12 @@
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
-        </id>
+        </id>        
+        <property name="quest" type="java.lang.Integer">
+            <column name="assignQuest" not-null="true">
+                <comment>quest the npc can assign</comment>
+            </column>
+        </property>
         <property name="name" type="string">
             <column name="name" not-null="true">
                 <comment>NPC name</comment>
